@@ -30,7 +30,7 @@ public class ZombiesWillEatYou extends Applet implements KeyListener, ActionList
   private int ihmistenAlkuY;
   
   int zombejaAlussa = 1;
-  int ihmisiaAlussa = 100;
+  int ihmisiaAlussa = 0;
   
   ArrayList<Zombi> zombit = new ArrayList<Zombi>();
   ArrayList<Ihminen> ihmiset = new ArrayList<Ihminen>();
@@ -50,8 +50,8 @@ public class ZombiesWillEatYou extends Applet implements KeyListener, ActionList
 
     scarlett       = getImage(getCodeBase(), "images.jpg");
 
-    screenWidth  = 300; //1100;
-    screenHeight = 200; //600;
+    screenWidth  = 1100; //1100;
+    screenHeight = 600; //600;
 
     setSize(screenWidth, screenHeight);
     setBackground(Color.black);
@@ -106,6 +106,9 @@ public void update(Graphics g) {
 
   public void actionPerformed(ActionEvent e) {
 
+	if (ihmiset.size()<100) {
+		ihmiset.add(new Ihminen(this));
+	}
     for (Zombi z : zombit) {
     	z.liiku();
     	z.pidaRuudulla(screenWidth, screenHeight);

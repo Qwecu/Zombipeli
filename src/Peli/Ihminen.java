@@ -10,8 +10,8 @@ public class Ihminen extends Humanoidi {
 		super(peli);
 		x = peli.getIhmistenAlkuX();
 		y = peli.getIhmistenAlkuY();
-		korkeus = 10;
-		leveys = 10;
+		korkeus = 20;
+		leveys = 20;
 		genomi = new Genomi();
 		teeKuva();
 		
@@ -22,13 +22,14 @@ public class Ihminen extends Humanoidi {
 		Graphics g = kuva.getGraphics();
 		g.setColor(genomi.getTaustavari());
 		g.fillRect(0, 0, leveys, korkeus);
-		/*for (int i =0; i<leveys; i ++) {
+		for (int i =0; i<leveys; i ++) {
 			for (int j=0; j<korkeus; j++) {
 				g.setColor(genomi.getTaustavari());
 				g.drawRect(i, j, i, j);
 				//System.out.println(i + " " + j + " " + genomi.getTaustavari().getBlue());
 			}
-		} */
+		} 
 	}
+
 
 }
