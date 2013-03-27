@@ -1,7 +1,5 @@
 package Peli;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.util.Random;
 
@@ -25,10 +23,12 @@ public class Humanoidi {
 	protected int korkeus;
 	protected int leveys;
 	
+	protected double suunta =666;
+	
 	public Humanoidi (ZombiesWillEatYou peli) {
 		this.peli = peli;
 		//kuva = createImage(2,2);
-		vauhti = 5;
+		vauhti = 5; //pitää ehkä olla pariton?
 		red = 0;
 		green = 0;
 		blue = 0;
@@ -56,19 +56,36 @@ public class Humanoidi {
 		return y + kuva.getHeight(peli);
 	}
 	
+	public void vaihdaSuuntaa(double x) {
+		suunta += x;
+		while (suunta >= (2*Math.PI)) {
+			suunta -= (2*Math.PI);
+		}
+	}
+	
 	public void liiku () {
-		pystyliike = (r.nextInt(vauhti)-vauhti/2);
-		sivuliike = (r.nextInt(vauhti)-vauhti/2);
-		x += sivuliike;
-		y += pystyliike;
+		if (suunta == 666) {
+			pystyliike = (r.nextInt(vauhti)-vauhti/2);
+			sivuliike = (r.nextInt(vauhti)-vauhti/2);
+			x += sivuliike;
+			y += pystyliike;
+		}
+		else {
+			pystyliike = (int) ((Math.cos(suunta))*vauhti);
+			sivuliike = (int) ((Math.sin(suunta))*vauhti);
+			x += sivuliike;
+			y += pystyliike;
+		}
 	}
 
 	public void pidaRuudulla(int screenWidth, int screenHeight) {
 		if (y<0 || y> (screenHeight - kuva.getHeight(peli))) {
 			y -= pystyliike;
+			//vaihdaSuuntaa(2.6);
 		}
 		if (x<0 || x> (screenWidth - kuva.getWidth(peli))) {
 			x -= sivuliike;
+			//vaihdaSuuntaa(2.6);
 		}
 	}
 	public boolean onkoSisalla(Humanoidi humanoidi) {
@@ -79,8 +96,6 @@ public class Humanoidi {
 		return false;
 	}
 	public void kuole () {
-		/*Graphics g = kuva.getGraphics();
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 10, 10); */
+		peli.kuole(this);
 	}
 }

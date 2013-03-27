@@ -1,13 +1,13 @@
 package Peli;
 
 import java.applet.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -29,7 +29,7 @@ public class ZombiesWillEatYou extends Applet implements KeyListener, ActionList
   private int ihmistenAlkuX;
   private int ihmistenAlkuY;
   
-  int zombejaAlussa = 1;
+  int zombejaAlussa = 10;
   int ihmisiaAlussa = 0;
   
   ArrayList<Zombi> zombit = new ArrayList<Zombi>();
@@ -117,14 +117,19 @@ public void update(Graphics g) {
     	z.liiku();
     	z.pidaRuudulla(screenWidth, screenHeight);
     }
+    
+    ArrayList<Ihminen> kuolleet = new ArrayList<Ihminen>();
+    
     for (Zombi z : zombit) {
     	for (Ihminen ih: ihmiset) {
     		if (ih.onkoSisalla(z)) {
-    			ih.kuole();
+    			kuolleet.add(ih); //ih.kuole();
     		}
     	}
     }
 
+    for (Ihminen ih: kuolleet) { ih.kuole(); }
+    
     repaint();
   }
 
@@ -153,5 +158,11 @@ public void update(Graphics g) {
 	
 	public int getIhmistenAlkuY() {
 		return ihmistenAlkuY;
+	}
+
+
+	public void kuole(Humanoidi h) {
+		//zombit.remove(h);
+		ihmiset.remove(h);
 	}
 }

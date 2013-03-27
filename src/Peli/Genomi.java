@@ -57,14 +57,38 @@ public class Genomi {
 		return a1;
 	}
 	
-	public Color getTaustavari() {
+	public Color getTaustavari() { //lokukset 2-20
 		Random r = new Random();
-		 int[] vari ={get(2)+ (r.nextInt(get(3)+1) -(get(3)/2)), get(4) + ((r.nextInt(get(5)+1)-get(5)/2)), get(6) + ((r.nextInt(get(7)+1)-get(7)/2))};
+		
+		 //int[] vari ={get(2)+ (r.nextInt(get(3)+1) -(get(3)/2)), get(4) + ((r.nextInt(get(5)+1)-get(5)/2)), get(6) + ((r.nextInt(get(7)+1)-get(7)/2))};
+		 int[] vari ={get(2)+ (int)(r.nextGaussian()*get(3)/3), get(4) + (int)(r.nextGaussian()*get(5)/3), get(6) + (int)(r.nextGaussian()*get(7)/3)};
+		//int v = 5;
+		//int[] vari ={get(2)+ (int)(r.nextGaussian()*v*get(3)/get(8)), get(4) + (int)(r.nextGaussian()*v*get(5)/get(9)), get(6) + (int)(r.nextGaussian()*v*get(7)/get(10))};
 		 for (int i =0; i <3; i++) {
 			 if (vari[i] < 0) {vari[i] = 0;}
 			 if (vari[i] > 255) {vari[i] = 255;}	 
 		 }
 	//	 System.out.println(vari[0] + " " + vari[1] + " " + vari[2]);
 		 return new Color (vari[0], vari[1], vari[2]);
+	}
+	public int getVauhti() { //lokukset 21-25
+		int vauhti = (get(21)/15);
+		if (vauhti % 2 == 0) {
+			vauhti += 1;
+		}
+		return vauhti;
+	}
+	public int getKorkeus() { //koolle lokukset 26-30
+		// TODO Auto-generated method stub
+		return 40;
+	}
+	public int getLeveys() {
+		// TODO Auto-generated method stub
+		return 40;
+	}
+	public double getSuunta() {
+		// TODO Auto-generated method stub
+		return get(31);
+		//return 666;
 	}
 }

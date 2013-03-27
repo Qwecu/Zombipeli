@@ -1,6 +1,5 @@
 package Peli;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 public class Ihminen extends Humanoidi {
@@ -10,9 +9,11 @@ public class Ihminen extends Humanoidi {
 		super(peli);
 		x = peli.getIhmistenAlkuX();
 		y = peli.getIhmistenAlkuY();
-		korkeus = 20;
-		leveys = 20;
 		genomi = new Genomi();
+		vauhti = genomi.getVauhti();
+		korkeus = genomi.getKorkeus();
+		leveys = genomi.getLeveys();
+		suunta = genomi.getSuunta();
 		teeKuva();
 		
 		
